@@ -247,7 +247,7 @@ variable "ssh_agent" {
 
 variable "connection_timeout" {
     description = "Timeout in minutes for SSH connections"
-    default     = 45
+    default     = 30
 }
 
 variable "jump_host" {
