@@ -72,51 +72,10 @@ variable "bastion" {
     # fixed_ips = []
   }
 }
-variable "bootstrap" {
-  default = {
-    # only one node is supported
-    count         = 1
-    instance_type = "m1.xlarge"
-    # rhcos image id
-    image_id = "468863e6-4b33-4e8b-b2c5-c9ef9e6eedf4"
-    # optional availability_zone
-    # availability_zone = ""
-    # optional fixed IPs
-    # fixed_ips = []
-  }
-}
 
-variable "master" {
-  default = {
-    count         = 3
-    instance_type = "m1.xlarge"
-    # rhcos image id
-    image_id = "468863e6-4b33-4e8b-b2c5-c9ef9e6eedf4"
-    # optional availability_zone
-    # availability_zone = ""
-    # optional fixed IPs
-    # fixed_ips = []
-    # optional data volumes to master nodes
-    # data_volume_size = 100 #Default volume size (in GB) to be attached to the master nodes.
-    # data_volume_count = 0 #Number of volumes to be attached to each master node.
-  }
-}
 
-variable "worker" {
-  default = {
-    count         = 2
-    instance_type = "m1.xlarge"
-    # rhcos image id
-    image_id = "468863e6-4b33-4e8b-b2c5-c9ef9e6eedf4"
-    # optional availability_zone
-    # availability_zone = ""
-    # optional fixed IPs
-    # fixed_ips = []
-    # optional data volumes to worker nodes
-    # data_volume_size = 100 #Default volume size (in GB) to be attached to the worker nodes.
-    # data_volume_count = 0 #Number of volumes to be attached to each worker node.
-  }
-}
+
+
 
 variable "network_name" {
   description = "The name of the network to be used for deploy operations"

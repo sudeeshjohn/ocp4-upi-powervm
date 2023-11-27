@@ -23,9 +23,6 @@ variable "cluster_id" {}
 variable "network_name" {}
 
 variable "bastion" {}
-variable "bootstrap" {}
-variable "master" {}
-variable "worker" {}
 
 variable "network_type" {}
 variable "sriov_vnic_failover_vfs" {}
