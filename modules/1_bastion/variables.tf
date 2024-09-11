@@ -30,6 +30,7 @@ variable "bastion_port_ids" {}
 variable "scg_id" {}
 variable "scg_flavor_is_public" {}
 variable "openstack_availability_zone" {}
+variable "tenant_name" {}
 
 variable "rhel_username" {}
 variable "private_key" {}

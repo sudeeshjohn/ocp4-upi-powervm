@@ -22,6 +22,10 @@ locals {
   bastion_count = lookup(var.bastion, "count", 1)
 }
 
+resource "openstack_identity_project_v3" "project" {
+  name = var.tenant_name
+}
+
 resource "openstack_compute_keypair_v2" "key-pair" {
   count      = var.create_keypair
   name       = var.keypair_name
@@ -44,6 +48,11 @@ resource "openstack_compute_flavor_v2" "bastion_scg" {
   rx_tx_factor = data.openstack_compute_flavor_v2.bastion.rx_tx_factor
   is_public    = var.scg_flavor_is_public
   extra_specs  = merge(data.openstack_compute_flavor_v2.bastion.extra_specs, { "powervm:storage_connectivity_group" : var.scg_id })
+}
+
+resource "openstack_compute_flavor_access_v2" "access" {
+  tenant_id = openstack_identity_project_v3.project.id
+  flavor_id = openstack_compute_flavor_v2.bastion_scg.id
 }
 
 data "openstack_compute_flavor_v2" "bastion" {
