@@ -68,6 +68,7 @@ module "bastion" {
   proxy                           = var.proxy
   fips_compliant                  = var.fips_compliant
   scg_flavor_is_public            = var.scg_flavor_is_public
+  tenant_name                     = var.tenant_name
 }
 
 module "network" {
@@ -205,6 +206,7 @@ module "bootstrapnode" {
   bootstrap_port_id           = module.network.bootstrap_port_id
   install_status              = module.installconfig.install_status
   scg_flavor_is_public        = var.scg_flavor_is_public
+  tenant_name                     = var.tenant_name
 }
 
 module "bootstrapconfig" {
@@ -233,6 +235,7 @@ module "masternodes" {
   mount_etcd_ramdisk          = var.mount_etcd_ramdisk
   install_status              = module.bootstrapconfig.install_status
   scg_flavor_is_public        = var.scg_flavor_is_public
+  tenant_name                     = var.tenant_name
 }
 
 module "bootstrapcomplete" {
@@ -265,6 +268,7 @@ module "workernodes" {
   installconfig_status        = module.installconfig.install_status
   bootstrapcomplete_status    = module.bootstrapcomplete.install_status
   scg_flavor_is_public        = var.scg_flavor_is_public
+  tenant_name                     = var.tenant_name
 }
 module "install" {
   depends_on = [module.helpernode, module.installconfig, module.workernodes]

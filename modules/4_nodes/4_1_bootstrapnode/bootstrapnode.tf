@@ -43,6 +43,15 @@ EOF
   }
 }
 
+resource "openstack_identity_project_v3" "project" {
+  name = var.tenant_name
+}
+
+resource "openstack_compute_flavor_access_v2" "access" {
+  tenant_id = openstack_identity_project_v3.project.id
+  flavor_id = openstack_compute_flavor_v2.bootstrap_scg.id
+}
+
 resource "openstack_compute_flavor_v2" "bootstrap_scg" {
   count        = var.scg_id == "" || var.bootstrap["count"] == 0 ? 0 : 1
   name         = "${var.bootstrap["instance_type"]}-${random_id.label[0].hex}-scg"
